@@ -13,8 +13,17 @@ const GET_PRIMARY_TOPICS = gql`
 
 function Home() {
 
-    const { loading, error, data = {} } = useQuery(GET_PRIMARY_TOPICS);
-    const [pTopic, setPTopic] = React.useState([]);
+    // const { loading, error, data = {} } = useQuery(GET_PRIMARY_TOPICS);
+    const { loading, error, data = {} } = {
+        loading: false,
+        error: false
+    };
+    console.log({ data });
+    const [pTopic, setPTopic] = React.useState([{
+        "__typename": "PrimaryTag",
+        "id": "612b87a4a9af02834de5f6e5",
+        "name": "Web development"
+    }]);
     const [value, setValue] = React.useState({
         id: '',
         name: ''
@@ -24,11 +33,11 @@ function Home() {
         setValue({ id: value.id, name: value.name });
     }, []);
 
-    useEffect(() => {
-        if (Object.keys(data).length) {
-            setPTopic(data.getAllPrimaryTopics);
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     if (Object.keys(data).length) {
+    //         setPTopic(data.getAllPrimaryTopics);
+    //     }
+    // }, [data]);
 
     if (loading) return 'Loading...';
     if (error) return `Error! ${error.message}`;
