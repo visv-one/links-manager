@@ -55,6 +55,8 @@ function Home() {
             <h2>Please Choose Primary Topic</h2>
 
             <Select
+                labelKey="name"
+                valueKey="id"
                 options={pTopic}
                 value={value}
                 onChange={({ value, option }) => {
