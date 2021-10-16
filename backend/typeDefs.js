@@ -22,6 +22,9 @@ const typeDefs = gql`
         id: ID
         url: String!
         tagIdList: [ID!]
+        title: String
+        description: String
+        banner: String
     }
 
     type SubTagWithTags {
@@ -38,6 +41,7 @@ const typeDefs = gql`
         getAllUrls: [Url]
         getAllPrimaryTopics: [PrimaryTag]
         getPrimaryTopicDetails(id: ID): PrimaryBelongings
+        getAllUrlsWithTags(tags: [ID]): [Url]
     }
 
     input SubInput {
@@ -60,6 +64,7 @@ const typeDefs = gql`
         createSubTopic(sub: SubInput) : SubTag
         createTag(tag: TagInput) : Tag
         createUrl(urlInput: UrlInput) : Url
+        deleteUrl(id: ID): Url
     }
 
 `

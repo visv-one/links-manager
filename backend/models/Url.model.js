@@ -8,6 +8,18 @@ const UrlSchema = new mongoose.Schema({
     tagIdList: {
         type: [mongoose.Schema.Types.ObjectId], ref: 'Tag',
         require: true
+    },
+    title: {
+        type: String,
+        require: true
+    },
+    description: {
+        type: String,
+        require: true
+    },
+    banner: {
+        type: String,
+        require: true
     }
 });
 

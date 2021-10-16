@@ -3,18 +3,18 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { addTags } from "../Features/tagsSlice";
 
+const Span = styled.span`
+padding: 5px 10px;
+background-color: #dea;
+border-radius: 10px;
+margin-right: 5px;
+font-size: 16px;
+cursor: pointer;
+`;
+
 function Tags({id, name}) {
 
     const dispatch = useDispatch();
-
-    const Span = styled.span`
-        padding: 5px 10px;
-        background-color: #dea;
-        border-radius: 10px;
-        margin-right: 5px;
-        font-size: 16px;
-        cursor: pointer;
-    `;
 
     const selectTag = function () {
         dispatch(addTags({id, name}));

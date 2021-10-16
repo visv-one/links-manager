@@ -3,15 +3,12 @@ import { Grid, Box } from 'grommet';
 import { useSelector } from "react-redux";
 import PrimaryTopicsQuery from '../../Components/PrimaryTopicsQuery';
 import PrimaryTopicsDataQuery from '../../Components/PrimaryTopicsDataQuery';
+import DisplayUrls from '../../Components/DisplayUrls';
 
 function Home() {
 
     const primaryTopic = useSelector((state) => state.topic.value);
     const tagsSelected = useSelector((state) => state.tags.value);
-
-    useEffect(() => {
-        console.log({tagsSelected});
-    }, [tagsSelected]);
 
     return (
         <Grid
@@ -32,7 +29,7 @@ function Home() {
                 )}
             </Box>
             <Box gridArea="main" pad="medium">
-                
+                {tagsSelected && <DisplayUrls tagsSelected={tagsSelected} />}                
             </Box>
         </Grid>
     )
