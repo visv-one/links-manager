@@ -1,11 +1,11 @@
 import React from 'react';
-import { Button, TextInput } from 'grommet';
+import { Box, Button, TextInput } from 'grommet';
 
 function AddUrlForm() {
     const [urlValue, setUrlValue] = React.useState('');
     const [ivalue, setIvalue] = React.useState('');
     return (
-        <div style={{padding: '20px'}}>
+        <Box pad="medium">
             <h2>Add URL</h2>
             <TextInput
                 placeholder="Please add URL"
@@ -20,11 +20,11 @@ function AddUrlForm() {
                 onChange={event => setIvalue(event.target.value)}
             />
             <Button
-                style={{ width: 'auto' }}
                 primary
+                alignSelf="start"
                 label="Submit"
             />
-        </div>
+        </Box>
     )
 }
 

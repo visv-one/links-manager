@@ -1,16 +1,31 @@
-body {
-  max-width: 100rem;
-  margin: 0 auto;
+h1, h2, h3, h4, h5, h6, p {
+    margin-top: 0;
 }
 
-h1.logo  {
-  margin: 0;
-} 
+.margin-none {
+    margin: 0px;
+}
 
-h1.logo a {
-  color: white;
-  text-decoration: none;
-} 
+.main-link {
+    color: #fff;
+    font-weight: normal;
+    text-decoration: none;
+}
+
+@media (min-width: 1024px) {
+    .home-grid {
+        height: calc(100vh - 78px);
+        overflow: auto;
+    }
+}
+
+@media (max-width: 1023px) {
+    .home-grid {
+        grid-template-areas:
+        "topic topic"
+        "main main" !important;
+    }
+}
 
 .grid_override svg[aria-label="LinkNext"] {
   position: absolute;

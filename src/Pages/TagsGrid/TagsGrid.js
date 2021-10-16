@@ -23,7 +23,7 @@ function TagsGrid() {
                 background="light-2" 
                 pad={{ horizontal: 'medium', vertical: 'small' }}
             >
-                <Tags type="primary" title="Create Primary Topic Tag" />
+                <Tags type="primary" title="Create Primary Topic" />
                 <LinkNext />
             </Box>
             <Box 
@@ -32,7 +32,7 @@ function TagsGrid() {
                 background="light-2" 
                 pad={{ horizontal: 'medium', vertical: 'small' }} 
             >
-                <Tags type="sub" title="Create Sub Topic Tag" />
+                <Tags type="sub" title="Create Sub Topic" />
                 <LinkNext />
             </Box>
             <Box 
@@ -40,7 +40,7 @@ function TagsGrid() {
                 background="light-2" 
                 pad={{ horizontal: 'medium', vertical: 'small' }} 
             >
-                <Tags type="tag" title="Create Tags" />
+                <Tags type="tag" title="Create Tag" />
             </Box>
         </Grid>
     )

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, TextInput, Select, Grid } from 'grommet';
+import { Box, Button, TextInput, Select, Grid } from 'grommet';
 
 function Tags(props) {
     const [ivalue, setIvalue] = React.useState('');
@@ -7,7 +7,7 @@ function Tags(props) {
     const [value, setValue] = React.useState('medium');
 
     return (
-        <div style={{ padding: 20 }}>
+        <Box pad="medium">
             <h2>{props.title}</h2>
             <TextInput
                 placeholder="Tag Name"
@@ -24,11 +24,12 @@ function Tags(props) {
                 />
             </Grid>}
             <Button
-                style={{ marginTop: '20px', width: 'auto' }}
+                style={{ marginTop: '20px' }}
+                alignSelf="start"
                 primary
                 label="Submit"
             />
-        </div>
+        </Box>
     )
 }
 

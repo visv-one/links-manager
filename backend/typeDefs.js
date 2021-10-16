@@ -37,7 +37,7 @@ const typeDefs = gql`
     type Query {
         getAllUrls: [Url]
         getAllPrimaryTopics: [PrimaryTag]
-        getBelongingsOfPrimaryTag(id: ID): PrimaryBelongings
+        getPrimaryTopicDetails(id: ID): PrimaryBelongings
     }
 
     input SubInput {
@@ -56,8 +56,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        createPrimaryTag(name: String) : PrimaryTag
-        createSubTag(sub: SubInput) : SubTag
+        createPrimaryTopic(name: String) : PrimaryTag
+        createSubTopic(sub: SubInput) : SubTag
         createTag(tag: TagInput) : Tag
         createUrl(urlInput: UrlInput) : Url
     }

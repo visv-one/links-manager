@@ -1,72 +1,40 @@
-import React, { useEffect, useCallback } from "react";
-import { Select, Box } from 'grommet';
-import { gql, useQuery } from '@apollo/client';
-
-const GET_PRIMARY_TOPICS = gql`
-    query {
-        getAllPrimaryTopics {
-            id
-            name
-        }
-    }
-`;
+import React, { useEffect } from "react";
+import { Grid, Box } from 'grommet';
+import { useSelector } from "react-redux";
+import PrimaryTopicsQuery from '../../Components/PrimaryTopicsQuery';
+import PrimaryTopicsDataQuery from '../../Components/PrimaryTopicsDataQuery';
 
 function Home() {
 
-    // const { loading, error, data = {} } = useQuery(GET_PRIMARY_TOPICS);
-    const { loading, error, data = {} } = {
-        loading: false,
-        error: false
-    };
-    console.log({ data });
-    const [pTopic, setPTopic] = React.useState([{
-        "__typename": "PrimaryTag",
-        "id": "612b87a4a9af02834de5f6e5",
-        "name": "Web development"
-    }]);
-    const [value, setValue] = React.useState({
-        id: '',
-        name: ''
-    });
+    const primaryTopic = useSelector((state) => state.topic.value);
+    const tagsSelected = useSelector((state) => state.tags.value);
 
-    const setTagValue = React.useCallback((value) => {
-        setValue({ id: value.id, name: value.name });
-    }, []);
-
-    // useEffect(() => {
-    //     if (Object.keys(data).length) {
-    //         setPTopic(data.getAllPrimaryTopics);
-    //     }
-    // }, [data]);
-
-    if (loading) return 'Loading...';
-    if (error) return `Error! ${error.message}`;
-    if (!data) return 'Data yet to recieve.';
-
-    const Rendererd = (option, index, options, { active, disabled, selected }) => (
-        <Box key={option.id} pad={"small"}>
-            {option.name}
-        </Box>
-    )
+    useEffect(() => {
+        console.log({tagsSelected});
+    }, [tagsSelected]);
 
     return (
-        <div style={{ padding: 20 }}>
-
-            <h2>Please Choose Primary Topic</h2>
-
-            <Select
-                labelKey="name"
-                valueKey="id"
-                options={pTopic}
-                value={value}
-                onChange={({ value, option }) => {
-                    console.log({ value, option });
-                    setTagValue(value);
-                }}
-            >
-                {Rendererd}
-            </Select>
-        </div>
+        <Grid
+            rows={['auto', 'flex']}
+            columns={['auto', 'flex']}
+            areas={[
+                { name: 'topic', start: [0, 1], end: [0, 1] },
+                { name: 'main', start: [1, 1], end: [1, 1] },
+            ]}
+            className="home-grid"
+        >
+            <Box gridArea="topic" background="light-2" pad="medium">
+                <PrimaryTopicsQuery />
+                {primaryTopic.id && (
+                    <div style={{marginTop: 20}}>
+                        <PrimaryTopicsDataQuery id={primaryTopic.id} />
+                    </div>
+                )}
+            </Box>
+            <Box gridArea="main" pad="medium">
+                
+            </Box>
+        </Grid>
     )
 
 }

@@ -10,7 +10,7 @@ const resolvers = {
         getAllPrimaryTopics: async () => {
             return await PrimaryTag.find();
         },
-        getBelongingsOfPrimaryTag: async (parent, args, context, info) => {
+        getPrimaryTopicDetails: async (parent, args, context, info) => {
             const subTags = await SubTag.find({'primaryID': args.id});
             for (let index = 0; index < subTags.length; index++) {
                 const element = await Tag.find({'subTagID': subTags[index]._id});
@@ -20,12 +20,12 @@ const resolvers = {
         }
     },
     Mutation: {
-        createPrimaryTag: async (parent, args, context, info) => {
+        createPrimaryTopic: async (parent, args, context, info) => {
             const primaryTag = new PrimaryTag({name: args.name});
             await primaryTag.save();
             return primaryTag;
         },
-        createSubTag:  async (parent, args, context, info) => {
+        createSubTopic:  async (parent, args, context, info) => {
             const { name, primaryID } = args.sub;
             const subTag = new SubTag({name, primaryID});
             await subTag.save();
