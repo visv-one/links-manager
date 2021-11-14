@@ -25,11 +25,11 @@ function Tags({id, name}) {
     )
 }
 
-function SubTopicWithTags({subTag}) {
+function SubTopicWithTags({subTopic}) {
     return (
-        <div>
-            <h4><strong>{subTag.name}</strong></h4>
-            {subTag.tags.map(tag => <Tags key={tag.id} id={tag.id} name={tag.name} />)}
+        <div style={{marginTop: 20}}>
+            <h4  style={{marginBottom: 15}}><strong>{subTopic.name}</strong></h4>
+            {subTopic.tags.map(tag => <Tags key={tag.id} id={tag.id} name={tag.name} />)}
         </div>
     )
 }

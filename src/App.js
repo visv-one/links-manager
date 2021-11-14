@@ -15,12 +15,19 @@ import { Provider } from "react-redux";
 import { store } from "./App/store";
 
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/',
+  uri: 'http://localhost:4000/api/v1',
   cache: new InMemoryCache()
 });
 
-
 function App() {
+
+  const submitLogin = function () {
+    const loginPassCode = prompt('What is your pass code ?');
+    if (!loginPassCode) return;
+    console.log({loginPassCode});
+    return;
+  };
+
   return (
     <Provider store={store}>
       <ApolloProvider client={client}>
@@ -46,6 +53,9 @@ function App() {
                     <Link to="/" className="main-link">Links Manager</Link>
                     {/* <Anchor title="Links Manager" href="/" color="white">Links Manager</Anchor> */}
                   </h2>
+                  {/* <Link to="#" style={{color:'#fff', textDecoration: 'none'}} onClick={() => submitLogin()}>
+                    Login
+                  </Link> */}
                   <Nav direction="row" alignSelf="center">
                     <Link to="/tags">
                       <Tag />

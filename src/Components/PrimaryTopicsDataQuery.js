@@ -6,7 +6,7 @@ import SubTopicWithTags from './SubTopicWithTags';
 const GET_PRIMARY_TOPICS_DATA = gql`
     query GetPrimaryTopicData($id: ID!) {
         getPrimaryTopicDetails(id: $id) {
-            subTags {
+            subTopics {
                 id
                 name
                 tags {
@@ -29,9 +29,9 @@ function PrimaryTopicsDataQuery({ id }) {
             {loading && (<div>loading topic data</div>)}
             {error && (<div>error topic data</div>)}
             {!data && (<div style={{ padding: 10 }}>no topic data</div>)}
-            <h3>Choose Tags from Sub Topic</h3>
-            {data && data.getPrimaryTopicDetails.subTags.map((subTag, index) => (
-                <SubTopicWithTags key={index} subTag={subTag} />
+            <h3 style={{marginBottom: 0}}>Choose Tags from Sub Topic</h3>
+            {data && data.getPrimaryTopicDetails.subTopics.map((subTopic, index) => (
+                <SubTopicWithTags key={index} subTopic={subTopic} />
             ))}
         </Box>
     )

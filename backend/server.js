@@ -5,6 +5,7 @@ const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
 const mongoose = require('mongoose');
 const cors = require("cors");
+require('dotenv').config();
 
 async function startServer() {
     const app = express();
@@ -24,16 +25,15 @@ async function startServer() {
 
     app.use(cors({ origin: '*' }));
 
-    apolloServer.applyMiddleware({ app, path: '/' });
+    apolloServer.applyMiddleware({ app, path: '/api/v1' });
 
     app.use((req, res) => {
         res.send("Hello from express apollo server")
     });
 
-    await mongoose.connect('mongodb://localhost:27017/links-manager', {
+    await mongoose.connect(process.env.MONGO_URL, {
         useNewUrlParser: true
-    });
-
+    }).then(() => console.log("DB connected!"));
 
     app.listen(4000, () => console.log('Server runnning on port 4000'));
 }

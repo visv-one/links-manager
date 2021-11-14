@@ -1,8 +1,14 @@
-# Getting Started with Create React App
+# Links Manger
+
+Links Manger is a project with which URLs are bookmarked with tags attached
+
+## Node.js Backend
+
+Backend is available at /backend folder.
+
+## React Frontend
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
 
 In the project directory, you can run:
 

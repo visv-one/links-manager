@@ -1,5 +1,5 @@
 const Url = require('./models/Url.model');
-const { PrimaryTag, SubTag, Tag } = require('./models/Tags.model');
+const { PrimaryTopic, SubTopic, Tag } = require('./models/Tags.model');
 const metaFetcher = require('meta-fetcher');
 
 const resolvers = {
@@ -8,36 +8,36 @@ const resolvers = {
             return await Url.find();
         },
         getAllPrimaryTopics: async () => {
-            return await PrimaryTag.find();
+            return await PrimaryTopic.find();
         },
         getPrimaryTopicDetails: async (parent, args, context, info) => {
-            const subTags = await SubTag.find({ 'primaryID': args.id });
-            for (let index = 0; index < subTags.length; index++) {
-                const element = await Tag.find({ 'subTagID': subTags[index]._id });
-                subTags[index].tags = element;
+            const subTopics = await SubTopic.find({ 'primaryID': args.id });
+            for (let index = 0; index < subTopics.length; index++) {
+                const element = await Tag.find({ 'subTopicID': subTopics[index]._id });
+                subTopics[index].tags = element;
             }
-            return { subTags };
+            return { subTopics };
         },
         getAllUrlsWithTags: async (parent, args, context, info) => {
-            const urlList = await Url.find({ 'tagIdList': { $all: args.tags } });
+            const urlList = await Url.find({ 'tagIdList': { $in: args.tags } });
             return urlList;
         }
     },
     Mutation: {
         createPrimaryTopic: async (parent, args, context, info) => {
-            const primaryTag = new PrimaryTag({ name: args.name });
-            await primaryTag.save();
-            return primaryTag;
+            const primaryTopic = new PrimaryTopic({ name: args.name });
+            await primaryTopic.save();
+            return primaryTopic;
         },
         createSubTopic: async (parent, args, context, info) => {
             const { name, primaryID } = args.sub;
-            const subTag = new SubTag({ name, primaryID });
-            await subTag.save();
-            return subTag;
+            const subTopic = new SubTopic({ name, primaryID });
+            await subTopic.save();
+            return subTopic;
         },
         createTag: async (parent, args, context, info) => {
-            const { name, subTagID } = args.tag;
-            const currTag = new Tag({ name, subTagID });
+            const { name, subTopicID } = args.tag;
+            const currTag = new Tag({ name, subTopicID });
             await currTag.save();
             return currTag;
         },

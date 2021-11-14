@@ -1,19 +1,19 @@
 const mongoose = require('mongoose');
 
-const PrimaryTag = new mongoose.Schema({
+const PrimaryTopic = new mongoose.Schema({
     name: {
         type: String,
         require: true
     }
 });
 
-const SubTag = new mongoose.Schema({
+const SubTopic = new mongoose.Schema({
     name: {
         type: String,
         require: true
     },
     primaryID: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'PrimaryTag',
+        type: mongoose.Schema.Types.ObjectId, ref: 'PrimaryTopic',
         require:true
     }
 });
@@ -23,14 +23,14 @@ const Tag = new mongoose.Schema({
         type: String,
         require: true
     },
-    subTagID: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'SubTag',
+    subTopicID: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'SubTopic',
         require:true
     }
 });
 
 module.exports = {
-    PrimaryTag: mongoose.model('PrimaryTag', PrimaryTag),
-    SubTag: mongoose.model('SubTag', SubTag),
+    PrimaryTopic: mongoose.model('PrimaryTopic', PrimaryTopic),
+    SubTopic: mongoose.model('SubTopic', SubTopic),
     Tag: mongoose.model('Tag', Tag)
 }

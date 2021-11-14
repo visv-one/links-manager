@@ -1,12 +1,12 @@
 const  { gql } = require('apollo-server-express');
 
 const typeDefs = gql`
-    type PrimaryTag {
+    type PrimaryTopic {
         id: ID
         name: String!
     }
 
-    type SubTag {
+    type SubTopic {
         id: ID
         name: String!
         primaryID: ID!
@@ -15,7 +15,7 @@ const typeDefs = gql`
     type Tag {
         id: ID
         name: String!
-        subTagID: ID!
+        subTopicID: ID!
     }
 
     type Url {
@@ -27,19 +27,19 @@ const typeDefs = gql`
         banner: String
     }
 
-    type SubTagWithTags {
+    type SubTopicWithTags {
         id: ID
         name: String!
         tags: [Tag]
     }
 
     type PrimaryBelongings {
-        subTags: [SubTagWithTags]
+        subTopics: [SubTopicWithTags]
     }
 
     type Query {
         getAllUrls: [Url]
-        getAllPrimaryTopics: [PrimaryTag]
+        getAllPrimaryTopics: [PrimaryTopic]
         getPrimaryTopicDetails(id: ID): PrimaryBelongings
         getAllUrlsWithTags(tags: [ID]): [Url]
     }
@@ -51,7 +51,7 @@ const typeDefs = gql`
 
     input TagInput {
         name: String
-        subTagID: ID
+        subTopicID: ID
     }
     
     input UrlInput {
@@ -60,8 +60,8 @@ const typeDefs = gql`
     }
 
     type Mutation {
-        createPrimaryTopic(name: String) : PrimaryTag
-        createSubTopic(sub: SubInput) : SubTag
+        createPrimaryTopic(name: String) : PrimaryTopic
+        createSubTopic(sub: SubInput) : SubTopic
         createTag(tag: TagInput) : Tag
         createUrl(urlInput: UrlInput) : Url
         deleteUrl(id: ID): Url
