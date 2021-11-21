@@ -19,8 +19,9 @@ function Home() {
                 { name: 'main', start: [1, 1], end: [1, 1] },
             ]}
             className="home-grid"
+            overflow="auto"
         >
-            <Box gridArea="topic" background="light-2" pad="medium">
+            <Box height="medium" gridArea="topic" background="light-2" pad="medium">
                 <PrimaryTopicsQuery />
                 {primaryTopic.id && (
                     <div style={{marginTop: 20}}>

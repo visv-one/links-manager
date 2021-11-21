@@ -9,7 +9,7 @@ import { Home, TagsGrid } from './Pages';
 import AddUrlForm from './Components/AddUrlForm';
 import { Grommet, Grid, Box, Nav, Header, Anchor } from 'grommet';
 import { grommet } from 'grommet/themes';
-import { Tag, Link as LinkIcon } from 'grommet-icons';
+import { Tag, Link as LinkIcon, Edit, Login as LoginIcon } from 'grommet-icons';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { Provider } from "react-redux";
 import { store } from "./App/store";
@@ -57,13 +57,15 @@ function App() {
                     Login
                   </Link> */}
                   <Nav direction="row" alignSelf="center">
-                    <Link to="/tags">
-                      <Tag />
+                    <Link to="/links-manager">
+                      <Edit />
                     </Link>
-                    <Link to="/add-url">
+                    {/* <Link to="/add-url">
                       <LinkIcon />
+                    </Link> */}
+                    <Link to="/login">
+                      <LoginIcon />
                     </Link>
-
                     {/* <Anchor title="Create Topics and Tags" href="/tags" color="white" icon={<Tag />} hoverIndicator />
                     <Anchor title="Add a New Link" href="/add-url" color="white" icon={<LinkIcon />} hoverIndicator /> */}
                   </Nav>
@@ -74,7 +76,7 @@ function App() {
                   <Route path="/add-url">
                     <AddUrlForm />
                   </Route>
-                  <Route path="/tags">
+                  <Route path="/links-manager">
                     <TagsGrid />
                   </Route>
                   <Route path="/">

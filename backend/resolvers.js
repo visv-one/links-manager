@@ -10,6 +10,9 @@ const resolvers = {
         getAllPrimaryTopics: async () => {
             return await PrimaryTopic.find();
         },
+        getAllSubTopicsOfPrimaryTopic: async (parent, args, context, info) => {
+            return await SubTopic.find({ 'primaryID': args.primaryId });
+        },
         getPrimaryTopicDetails: async (parent, args, context, info) => {
             const subTopics = await SubTopic.find({ 'primaryID': args.id });
             for (let index = 0; index < subTopics.length; index++) {
@@ -30,7 +33,7 @@ const resolvers = {
             return primaryTopic;
         },
         createSubTopic: async (parent, args, context, info) => {
-            const { name, primaryID } = args.sub;
+            const { name, primaryID } = args;
             const subTopic = new SubTopic({ name, primaryID });
             await subTopic.save();
             return subTopic;

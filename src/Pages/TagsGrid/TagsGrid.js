@@ -1,48 +1,46 @@
-import Tags from '../../Components/Tags';
-import { Box, Grid } from 'grommet';
+import { Box, Tabs, Tab } from 'grommet';
 import { LinkNext } from 'grommet-icons';
+import { gql, useQuery } from '@apollo/client';
+import AddUrlForm from '../../Components/AddUrlForm';
+import CreatePrimaryTopic from '../../Components/CreatePrimaryTopic';
+import CreateSubTopic from '../../Components/CreateSubTopic';
+import CreateTag from '../../Components/CreateTag';
+
+const GET_PRIMARY_TOPICS = gql`
+    query {
+        getAllPrimaryTopics {
+            id
+            name
+        }
+    }
+`;
 
 function TagsGrid() {
+    
+    const { loading, error, data: primaryTopicData = {} } = useQuery(GET_PRIMARY_TOPICS);
+
     return (
-        <Grid
-            rows={['auto']}
-            columns={['auto', 'auto', 'auto']}
-            responsive={true}
-            gap="small"
-            areas={[
-                { name: 'header', start: [0, 0], end: [0, 0] },
-                { name: 'nav', start: [1, 0], end: [1, 0] },
-                { name: 'main', start: [2, 0], end: [2, 0] },
-            ]}
-            style={{ margin: 20 }}
-            className="grid_override"
-        >
-            <Box 
-                gridArea="header" 
-                style={{ position: 'relative' }} 
-                background="light-2" 
-                pad={{ horizontal: 'medium', vertical: 'small' }}
-            >
-                <Tags type="primary" title="Create Primary Topic" />
-                <LinkNext />
-            </Box>
-            <Box 
-                gridArea="nav" 
-                style={{ position: 'relative' }} 
-                background="light-2" 
-                pad={{ horizontal: 'medium', vertical: 'small' }} 
-            >
-                <Tags type="sub" title="Create Sub Topic" />
-                <LinkNext />
-            </Box>
-            <Box 
-                gridArea="main" 
-                background="light-2" 
-                pad={{ horizontal: 'medium', vertical: 'small' }} 
-            >
-                <Tags type="tag" title="Create Tag" />
-            </Box>
-        </Grid>
+        <Box pad="medium">
+            <Tabs justify="start" alignControls="start">
+                <Tab title="Create Primary Topic">
+                    <CreatePrimaryTopic />
+                </Tab>
+                <Tab title="Create Sub Topic">
+                    <CreateSubTopic />
+                    {/* <Box>
+                        <Tags type="sub" title="Create Sub Topic" data={primaryTopicData} />
+                    </Box> */}
+                </Tab>
+                <Tab title="Create Tag">
+                    <Box>
+                        <CreateTag type="tag" title="Create Tag" />
+                    </Box>
+                </Tab>
+                <Tab title="Add URL">
+                    <AddUrlForm />
+                </Tab>
+            </Tabs>
+        </Box>
     )
 }
 

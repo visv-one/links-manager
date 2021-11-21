@@ -6,7 +6,8 @@ import { addTags } from "../Features/tagsSlice";
 const Span = styled.span`
 padding: 5px 10px;
 background-color: #dea;
-border-radius: 10px;
+border-radius: 4px;
+display: inline-block;
 margin-right: 5px;
 font-size: 16px;
 cursor: pointer;

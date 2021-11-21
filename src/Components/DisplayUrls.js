@@ -6,7 +6,8 @@ import { gql, useQuery } from '@apollo/client';
 const Span = styled.span`
 padding: 5px 10px;
 background-color: #dea;
-border-radius: 10px;
+border-radius: 4px;
+display: inline-block;
 margin-right: 5px;
 font-size: 16px;
 `;
@@ -41,8 +42,8 @@ function DisplayUrls({ tagsSelected }) {
                         <a href={urls.url} target="_blank" style={{margin: 0, textDecoration: 'none'}}>
                             <img style={{ width: 'auto', height: 150, margin: '0 auto', display: 'block' }} src={urls.banner} alt={urls.title} />
                             <div style={{ padding: 10 }}>
-                                <h4>{urls.title}</h4>
-                                <p>{urls.description}</p>
+                                <h5 style={{marginBottom: '10px', textAlign: "center"}}>{urls.title}</h5>
+                                <p style={{fontSize: '0.8rem', lineHeight: '1.4',marginBottom: '0px'}}>{urls.description}</p>
                             </div>
                         </a>
                     </Card>
